@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/task3.dir/src/Task3.cpp.o CMakeFiles/task3.dir/lib/sensor.cpp.o -o task3 
