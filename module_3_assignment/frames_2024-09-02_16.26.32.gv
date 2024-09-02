@@ -1,0 +1,14 @@
+digraph G {
+"base_link" -> "Rbase"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "ball"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"link3" -> "gripper"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"link2" -> "link3"[label=" Broadcaster: default_authority\nAverage rate: 10.199\nBuffer length: 5.0\nMost recent transform: 1725283592.461829\nOldest transform: 1725283587.46151\n"];
+"Rbase" -> "link1"[label=" Broadcaster: default_authority\nAverage rate: 10.199\nBuffer length: 5.0\nMost recent transform: 1725283592.461829\nOldest transform: 1725283587.46151\n"];
+"base_link" -> "Lwheel"[label=" Broadcaster: default_authority\nAverage rate: 10.199\nBuffer length: 5.0\nMost recent transform: 1725283592.461829\nOldest transform: 1725283587.46151\n"];
+"base_link" -> "Rwheel"[label=" Broadcaster: default_authority\nAverage rate: 10.199\nBuffer length: 5.0\nMost recent transform: 1725283592.461829\nOldest transform: 1725283587.46151\n"];
+"link1" -> "link2"[label=" Broadcaster: default_authority\nAverage rate: 10.199\nBuffer length: 5.0\nMost recent transform: 1725283592.461829\nOldest transform: 1725283587.46151\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1725283592.49411"[ shape=plaintext ] ;
+}->"base_link";
+}

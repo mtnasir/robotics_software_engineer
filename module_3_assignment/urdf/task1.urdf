@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+  <robot name="SCARA">
+
+
+
+  <link name="base">
+    
+
+  </link>
+
+  <link name="link1">
+    
+
+  </link>
+
+ <link name="link2">
+    
+  </link>
+
+ <link name="link3">
+
+  </link>
+
+ <link name="gripper">
+
+  </link>
+
+
+ 
+  <joint name="base_link1" type="continuous">
+    <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+    <parent link="base"/>
+    <child link="link1"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+
+
+  <joint name="link1_link2" type="continuous">
+    <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+
+  <joint name="link2_link3" type="prismatic">
+    <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="100" velocity="100" lower="-0.2" upper="0.1"/> 
+  </joint>
+ 
+ <joint name="link3_gripper" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link3"/>
+    <child link="gripper"/>
+  </joint>
+
+
+</robot>

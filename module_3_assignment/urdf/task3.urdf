@@ -1,0 +1,168 @@
+<?xml version="1.0" ?>
+  <robot name="SCARA">
+  <material name="red">
+  <color rgba="0.5 0 0 1"/>
+  </material>
+
+  <material name="blue">
+  <color rgba="0.5 0 0 1"/>
+  </material>
+
+<link name="base_link"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.05"/>
+            <geometry>
+              <box size="0.4 0.4 0.1"/>
+            </geometry>
+    </visual> 
+  </link>
+
+<link name="ball"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+              <sphere radius="0.05"/>
+            </geometry>
+    </visual> 
+  </link>
+
+<link name="Rwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+  </link>
+
+  <link name="Lwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 -0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+  </link>
+
+
+  <link name="Rbase"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.1"/>
+            <geometry>
+              <cylinder radius="0.05" length="0.2"/>
+            </geometry>
+    </visual> 
+  </link>
+
+  <link name="link1">
+       <visual>
+            <origin rpy="0 1.57 0" xyz="0.1 0 0"/>
+            <geometry>
+              <cylinder radius="0.05" length="0.2"/>
+            </geometry>
+            <material name="Cyan">
+               <color rgba="0 1.0 1.0 1.0"/>
+            </material>
+    </visual> 
+
+  </link>
+
+ <link name="link2">
+     <visual>
+            <origin rpy="0 1.57 0" xyz="0.1 0 0"/>
+            <geometry>
+              <cylinder radius="0.05" length="0.2"/>
+            </geometry>
+            <material name="green">
+               <color rgba="0 1.0 0 1.0"/>
+            </material>
+    </visual> 
+
+  </link>
+
+ <link name="link3">
+   <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.1"/>
+            <geometry>
+              <cylinder radius="0.05" length="0.2"/>
+            </geometry>
+            <material name="blue">
+               <color rgba="0 0 1 1.0"/>
+            </material>
+    </visual> 
+  </link>
+
+ <link name="gripper">
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 -0.05"/>
+            <geometry>
+              <box size="0.05 0.1 0.1" />
+            </geometry>
+           <material name="gf">
+               <color rgba="1 0.5 0 1.0"/>
+            </material>
+            
+    </visual> 
+  </link>
+ 
+
+<joint name="base_link_ball" type="fixed">
+    <origin xyz="0 -0.1 0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="ball"/>
+  </joint>
+
+  <joint name="base_link_Rwheel" type="continuous">
+    <origin xyz="0.2 0.1 0.05" rpy="0.0 1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="Rwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+
+  <joint name="base_link_Lwheel" type="continuous">
+    <origin xyz=" -0.2 0.1 0.05" rpy="0.0 -1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="Lwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+ <joint name="base_link_Rbase" type="fixed">
+    <origin xyz="0.0 0.0 0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="Rbase"/>
+  </joint>
+
+
+
+  <joint name="Rbase_link1" type="continuous">
+    <origin xyz="0.0 0.0 0.2" rpy="0.0 0.0 0.0"/>
+    <parent link="Rbase"/>
+    <child link="link1"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+
+
+  <joint name="link1_link2" type="continuous">
+    <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link1"/>
+    <child link="link2"/>
+    <axis xyz="0.0 0.0 1.0"/>
+  </joint>
+
+  <joint name="link2_link3" type="prismatic">
+    <origin xyz="0.2 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link2"/>
+    <child link="link3"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="100" velocity="100" lower="-0.2" upper="0.1"/> 
+  </joint>
+ 
+ <joint name="link3_gripper" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="link3"/>
+    <child link="gripper"/>
+  </joint>
+
+
+</robot>

@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+  <robot name="SCARA">
+  <material name="red">
+  <color rgba="0.5 0 0 1"/>
+  </material>
+
+  <material name="blue">
+  <color rgba="0.5 0 0 1"/>
+  </material>
+
+<link name="base_link"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.05"/>
+            <geometry>
+              <box size="0.4 0.4 0.1"/>
+            </geometry>
+    </visual> 
+</link>
+
+<link name="FRwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+</link>
+
+  <link name="FLwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 -0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+  </link>
+
+<link name="RRwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+  </link>
+
+  <link name="RLwheel"> 
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 -0.005"/>
+            <geometry>
+              <cylinder radius="0.1" length="0.01"/>
+            </geometry>
+    </visual> 
+  </link>
+
+   <joint name="base_link_Rwheel" type="continuous">
+    <origin xyz="0.2 0.1 0.05" rpy="0.0 1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="FRwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+  <joint name="base_link_Lwheel" type="continuous">
+    <origin xyz=" -0.2 0.1 0.05" rpy="0.0 -1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="FLwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+
+   <joint name="steering_base_link_Rwheel" type="revolute">
+    <origin xyz="0.2 0.1 0.05" rpy="0.0 1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="FRwheel"/>
+    <axis xyz="1.0 0 0.0"/>
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1.0"/>
+
+  </joint>
+
+  <joint name="steering_base_link_Lwheel" type="revolute">
+    <origin xyz=" -0.2 0.1 0.05" rpy="0.0 -1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="FLwheel"/>
+    <axis xyz="1.0 0 0.0"/>
+    <limit lower="-0.5" upper="0.5" effort="10" velocity="1.0"/>
+
+  </joint>
+
+  <joint name="base_link_RRwheel" type="continuous">
+    <origin xyz="0.2 -0.1 0.05" rpy="0.0 1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="RRwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+  <joint name="base_link_RLwheel" type="continuous">
+    <origin xyz=" -0.2 -0.1 0.05" rpy="0.0 -1.57 0.0"/>
+    <parent link="base_link"/>
+    <child link="RLwheel"/>
+    <axis xyz="0.0 0 1.0"/>
+  </joint>
+
+
+</robot>
