@@ -17,24 +17,24 @@
 # Authors: Joep Tool
 
 import os
-
+from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
+
 
 def generate_launch_description():
     launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
-    x_pose = LaunchConfiguration('x_pose', default='-5.63')
-    y_pose = LaunchConfiguration('y_pose', default='2.122')
+    x_pose = LaunchConfiguration('x_pose', default='-6.09')
+    y_pose = LaunchConfiguration('y_pose', default='2.07')
 
     world = os.path.join(
-        get_package_share_directory('robot_sensing_debug'),
+        get_package_share_directory('rse_m4'),
         'worlds',
         'line_following.world'
     )
@@ -58,6 +58,7 @@ def generate_launch_description():
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )
+
     spawn_turtlebot_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(launch_file_dir, 'spawn_turtlebot3.launch.py')
@@ -67,15 +68,11 @@ def generate_launch_description():
             'y_pose': y_pose
         }.items()
     )
-
-
-    line_following = Node(
-        package = 'robot_sensing_debug',
-        name = 'camera_subscriber_node',
-        executable ='lineFollowing',
-
-    )
-
+    control_line=Node(
+            package='rse_m4',
+            executable='task1',
+            name='task1',
+        )
     ld = LaunchDescription()
 
     # Add the commands to the launch description
@@ -83,6 +80,7 @@ def generate_launch_description():
     ld.add_action(gzclient_cmd)
     ld.add_action(robot_state_publisher_cmd)
     ld.add_action(spawn_turtlebot_cmd)
-    ld.add_action(line_following)
+    ld.add_action(control_line)
+
 
     return ld
