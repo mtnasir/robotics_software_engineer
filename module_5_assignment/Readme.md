@@ -20,7 +20,7 @@ ros2 launch rse_m5 velocity_controller.launch.py
 
 ### Task 3: 
 
-see the urdf/task3.urdf
+see urdf/task3.urdf
 
 ### Task 4: Implement and Visualize LQR for Multi-Goal Following
 
