@@ -1,0 +1,44 @@
+ekf_filter_node:
+  ros__parameters:
+    frequency: 30.0
+    sensor_timeout: 0.1
+    two_d_mode: true
+    transform_time_offset: 0.0
+    transform_timeout: 0.0
+    print_diagnostics: false
+    publish_tf: true
+    odom_frame: "odom"
+    base_link_frame: "base_link"
+    world_frame: "map"
+    map_frame: "map"
+
+    imu0: "imu/data"
+    imu0_config: [false, false, false,
+                  true,  true,  true,
+                  false, false, false,
+                  false, false, true,
+                  true,  true,  true]
+    imu0_differential: false
+    imu0_queue_size: 10
+    imu0_remove_gravitational_acceleration: true
+
+    gps0: "gps/fix"
+    gps0_config: [true,  true,  false,
+                  false, false, false,
+                  false, false, false]
+    gps0_queue_size: 10
+    gps0_differential: false
+    gps0_relative: false
+    gps0_noise: [0.0001, 0.0001, 0.0001]
+
+    process_noise_covariance:
+      diagonal: [0.05,  0.05,  0.0,
+                 0.0,   0.0,   0.01,
+                 0.1,   0.1,   0.0,
+                 0.0,   0.0,   0.01]
+
+    initial_estimate_covariance:
+      diagonal: [1e-9, 1e-9, 1e-9,
+                 1e-9, 1e-9, 1e-9,
+                 1e-9, 1e-9, 1e-9,
+                 1e-9, 1e-9, 1e-9]
